@@ -34,7 +34,7 @@ def signup(request):
                 })
         return render(request, 'signup.html', {
             'form': UserCreationForm,
-            'error': 'Password do not match'
+            'error': 'Passwords did not match'
         })
 
 @login_required#con esto se proteje la ruta
@@ -64,7 +64,7 @@ def create_task(request):
         except ValueError:
             return render(request, 'create_task.html', {
                 'form': TaskForm,
-                'error': 'Please provide valid data'
+                'error': 'Error creating task.'
             })
             
 @login_required            
@@ -80,7 +80,7 @@ def task_detail(request, task_id):
             form.save()
             return redirect('tasks')
         except ValueError:
-            return render(request, 'task_detail.html', { 'task' : task, 'form': form, 'error': 'Error updating tasak'})
+            return render(request, 'task_detail.html', { 'task' : task, 'form': form, 'error': 'Error updating task'})
 
 @login_required
 def complete_task(request, task_id):

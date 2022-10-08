@@ -5,24 +5,22 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h1 class="text-center display-3 mt-3">Tasks</h1>
-            {% for task in tasks %}
-            {% if task.datecompleted %}
-            <h2 class="text-center display-3 mb-3">Completed</h2>
-            {% else %}
-            <h2 class="text-center display-3 mb-3">Pending</h2>
-            {% endif %}
+            <div class="d-flex">
+            <p class="text-danger">Important   </p><p class="text-black mx-auto">Normal</p>
+        </div>
+            {% for task in tasks %}            
             <ul class="list-group ">
                 <li class="list-group-item ">
                     <a class=" list-group-item nav-link d-flex flex-column" href="{% url 'task_detail' task.id %}">
-                        {% if task.datecompleted %}
-                            <h2 class="fw-bold text-success">{{task.title}}</h2>
-                            {% else %}
-                            <h2 class="fw-bold text-danger">{{task.title}}</h2>
-                            {% endif %}
-                            <h6 class="d-inline-block">{{task.user.username}}</h6>
-                            <p class="list-group-item">{{task.description}}</p>
-                            
-                        
+                        {% if task.important %}
+                        <h2 class="fw-bold text-danger">{{task.title}}</h2>
+                        {% else %}
+                        <h2 class="fw-bold text-black">{{task.title}}</h2>
+                        {% endif %}
+                        <h6 class="d-inline-block">{{task.user.username}}</h6>
+                        <p class="list-group-item">{{task.description}}</p>
+
+
                         <p class="m-auto text-primary">Completed at: {{task.datecompleted|date:'M j Y'}}</p>
                     </a>
                 </li>

@@ -4,26 +4,28 @@
 <main class="container">
     <div class="row">
         <div class="col-md-4 offset-md-4 mt-5">
-            <h2>{{task.title}}</h2>
+            <h2 class="text-center display-2">Task Detail</h2>
             {{error}}
-            <div class="d-f justify-content-around">
-                <form method="POST">
-                    {% csrf_token %}
-                    {{form.as_p}}
-                    <button class="btn btn-primary" >Update</button>
-                </form>
 
-                <form action="{% url 'complete_task' task.id %}" method="POST">
+            <form class="pt-3" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-primary mt-5">Update</button>
+            </form>
+
+            <div class="d-flex justify-content-end">
+                <form class="p-1" action="{% url 'complete_task' task.id %}" method="POST">
                     {% csrf_token %}
                     <button class="btn btn-secondary">Complete</button>
                 </form>
 
-                <form action="{% url 'delete_task' task.id %}" method="POST">
+                <form class="p-1" action="{% url 'delete_task' task.id %}" method="POST">
                     {% csrf_token %}
-                    <button class="btn btn-primary danger">Delete</button>
+                    <button class="btn btn-danger">Delete</button>
                 </form>
             </div>
         </div>
+    </div>
     </div>
 </main>
 
